@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  main-service:
+    container_name: ${MAIN_SERVICE_NAME}
+    image: ${MAIN_SERVICE_IMAGE}
+    ports:
+      - "${MAIN_PORT}:8080"
+    networks:
+      - eigenlayer
+    environment:
+      - MAIN_SERVICE_NAME=${MAIN_SERVICE_NAME}
+      - MAIN_PORT=${MAIN_PORT}
+      - NETWORK_NAME=${NETWORK_NAME}
+      - OPERATOR_ECDSA_KEY_PASSWORD=${OPERATOR_ECDSA_KEY_PASSWORD}
+      - OPERATOR_BLS_KEY_PASSWORD=${OPERATOR_BLS_KEY_PASSWORD}
+    volumes:
+      - ${AVS_CONFIG_PATH}:/app/avs_config.yaml:readonly
+      - ${OPERATOR_ECDSA_KEY_PATH}:/operator_keys/ecdsa_key.json:readonly
+      - ${OPERATOR_BLS_KEY_PATH}:/operator_keys/bls_key.json:readonly
+networks:
+  eigenlayer:
+    name: ${NETWORK_NAME}

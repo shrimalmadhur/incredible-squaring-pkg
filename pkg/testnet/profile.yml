@@ -1,0 +1,62 @@
+monitoring:
+  targets:
+    - service: "main-service"
+      port: 9090
+      path: "/metrics"
+api:
+  service: "main-service"
+  port: 8080
+options:
+  - name: "main-container-name"
+    target: MAIN_SERVICE_NAME
+    type: str
+    default: "option-returner"
+    help: "Main service container name"
+  - name: "main-port"
+    target: MAIN_PORT
+    type: port
+    default: 8080
+    help: "Main service server port"
+  - name: "network-name"
+    target: NETWORK_NAME
+    type: str
+    validate:
+      re2_regex: "^eigen.*" # Words that start with eigen
+    default: eigenlayer
+    help: "Docker network name"
+  - name: "avs-config-path"
+    target: AVS_CONFIG_PATH
+    type: path_file
+    validate:
+      format: ".yaml"
+    default: /Users/madhurshrimal/Desktop/github/NethermindEth/eigenlayer/config/avs_config.yaml
+    help: "AVS config path"
+  - name: "operator-ecdsa-key-path"
+    target: OPERATOR_ECDSA_KEY_PATH
+    type: path_file
+    validate:
+      format: ".json"
+    default: /Users/madhurshrimal/Desktop/github/NethermindEth/eigenlayer/operator_keys/first.ecdsa.key.json
+    help: "ECDSA key path"
+  - name: "operator-ecdsa-key-password"
+    target: OPERATOR_ECDSA_KEY_PASSWORD
+    type: str
+    hidden: true
+    help: "ECDSA key password"
+  - name: "operator-bls-key-path"
+    target: OPERATOR_BLS_KEY_PATH
+    type: path_file
+    validate:
+      format: ".json"
+    default: /Users/madhurshrimal/Desktop/github/NethermindEth/eigenlayer/operator_keys/first.bls.key.json
+    help: "BLS key path"
+  - name: "operator-bls-key-password"
+    target: OPERATOR_BLS_KEY_PASSWORD
+    type: str
+    hidden: true
+    help: "BLS key password"
+hardware_requirements_overrides:
+  min_cpu_cores: 20
+  min_ram: 65536         # ~= 64 Gb
+  min_free_space: 5242880  # ~= 5  Tb
+  stop_if_requirements_are_not_met: false
