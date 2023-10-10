@@ -33,7 +33,7 @@ bls_private_key_store_path: /operator_keys/bls_key.json
 aggregator_server_ip_port_address: host.docker.internal:8090
 
 # This is the address of the service where metrics are exposed
-eigen_metrics_ip_port_address: localhost:9090
+eigen_metrics_ip_port_address: 0.0.0.0:9091
 
 # If you want to use the instrumented eth client, set this to true
 use_instrumented_eth_client: false

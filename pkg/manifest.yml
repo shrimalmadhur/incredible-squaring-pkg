@@ -8,6 +8,6 @@ hardware_requirements:
   min_free_space: 5120  # ~= 5 Gb
   stop_if_requirements_are_not_met: true
 plugin:
-  image: ghcr.io/layr-labs/incredible-squaring-avs-plugin:0.0.4
+  image: ghcr.io/layr-labs/incredible-squaring-avs-plugin:0.0.5
 profiles:
   - "testnet"

@@ -5,6 +5,7 @@ services:
     image: ${MAIN_SERVICE_IMAGE}
     ports:
       - "${MAIN_PORT}:8080"
+      - "${METRICS_PORT}:9091"
     networks:
       - eigenlayer
     environment:
